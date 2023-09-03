@@ -134,7 +134,6 @@ class Home extends Component {
               className="search-input"
               placeholder="Search"
               onClick={this.showFavouritesFalse}
-              //
             />
             <button
               className={showFavourites ? "alter-bg" : "search-button"}
