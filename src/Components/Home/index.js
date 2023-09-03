@@ -62,6 +62,10 @@ class Home extends Component {
     }));
   };
 
+  showFavouritesFalse = () => {
+    this.setState({ showFavourites: false });
+  };
+
   navigateToHome = () => {
     Cookies.remove("giphy_search_token");
     this.setState({});
@@ -129,7 +133,7 @@ class Home extends Component {
               value={searchInput}
               className="search-input"
               placeholder="Search"
-              onClick={this.showFavourites}
+              onClick={this.showFavouritesFalse}
               //
             />
             <button
