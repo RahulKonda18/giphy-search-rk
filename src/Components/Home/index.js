@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import Logo from "../../giphy-search.png";
 import { Navigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import { BsSearchHeart } from "react-icons/bs";
+import { BsSearchHeart, BsHeartbreak } from "react-icons/bs";
 import Pagination from "../Pagination/Pagination";
 
 const pages = [1, 2, 3, 4, 5];
@@ -21,7 +21,16 @@ class Home extends Component {
   };
 
   onFavourite = (fav) => {
-    this.setState((prev) => ({ favourites: [...prev.favourites, fav] }));
+    const { favourites } = this.state;
+    if (favourites.includes(fav)) {
+      const index = favourites.indexOf(fav);
+      if (index > -1) {
+        favourites.splice(index, 1);
+        this.setState({ favourites: favourites });
+      }
+    } else {
+      this.setState((prev) => ({ favourites: [...prev.favourites, fav] }));
+    }
   };
 
   changeOffset = (val) => {
@@ -47,6 +56,12 @@ class Home extends Component {
     this.searchGifs();
   };
 
+  showFavourites = () => {
+    this.setState((prev) => ({
+      showFavourites: !prev.showFavourites,
+    }));
+  };
+
   navigateToHome = () => {
     Cookies.remove("giphy_search_token");
     this.setState({});
@@ -61,7 +76,26 @@ class Home extends Component {
     );
   };
 
-  renderEmptyView = () => {
+  renderAddFavourites = () => {
+    <div className="center-align">
+      <div className="row-align">
+        <h1 className="message">There are no Favourites yet</h1>
+      </div>
+      <BsSearchHeart color="#ebd834" size={60} />
+    </div>;
+  };
+
+  renderEmptyView = (showFavourites) => {
+    if (showFavourites) {
+      return (
+        <div className="center-align">
+          <div className="row-align">
+            <h1 className="message">There are no Favourites</h1>
+          </div>
+          <BsHeartbreak color="#ebd834" size={60} />
+        </div>
+      );
+    }
     return (
       <div className="center-align">
         <div className="row-align">
@@ -73,8 +107,14 @@ class Home extends Component {
   };
 
   render() {
-    const { searchResults, searchInput, favourites, isLoading } = this.state;
-    const results = searchResults;
+    const {
+      searchResults,
+      searchInput,
+      favourites,
+      isLoading,
+      showFavourites,
+    } = this.state;
+    const results = showFavourites ? favourites : searchResults;
     if (Cookies.get("giphy_search_token") === undefined) {
       return <Navigate to="/" replace={true} />;
     }
@@ -91,11 +131,11 @@ class Home extends Component {
               placeholder="Search"
             />
             <button
-              className="search-button"
+              className={showFavourites ? "alter-bg" : "search-button"}
               type="button"
-              onClick={this.searchGifs}
+              onClick={this.showFavourites}
             >
-              Search
+              Favourites
             </button>
             <h2 className="log-out" onClick={this.navigateToHome}>
               Log out
@@ -104,7 +144,7 @@ class Home extends Component {
           {isLoading ? (
             this.renderLoader()
           ) : results.length === 0 ? (
-            this.renderEmptyView()
+            this.renderEmptyView(showFavourites)
           ) : (
             <div>
               <ul className="results-list">

@@ -101,3 +101,18 @@
   background-color: #121b31;
   margin: 0px;
 }
+.alter-bg {
+  background-color: #121b31;
+  color: #ebd834;
+  border: 2px solid #ebd834;
+  border-radius: 5px;
+  padding: 7px;
+  font-family: "Poppins";
+  margin-left: 5px;
+  font-weight: normal;
+  height: 40px;
+  cursor: pointer;
+  margin: 0px;
+  height: 50px;
+  font-weight: bold;
+}
