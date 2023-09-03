@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+.login-background-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins";
+  height: 100vh;
+  background-color: #121b31;
+}
+.login-container {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  color: whitesmoke;
+  background-color: white;
+  border-radius: 25px;
+  padding: 20px;
+  height: 250px;
+  width: 250px;
+}
+.mail-input {
+  outline: black;
+  width: 100%;
+  color: black;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+.password-input {
+  outline: black;
+  width: 200px;
+  color: black;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+.sign-in-button {
+  background-color: #ebd834;
+  color: black;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 7px;
+  font-weight: normal;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.center-align {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+label {
+  color: black;
+  font-weight: bold;
+}
+.logo {
+  width: 400px;
+  height: 300px;
+}
+.visibility {
+  cursor: pointer;
+}
+.password-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.error-message {
+  color: red;
+  margin: 0px;
+  height: 20px;
+}
